@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "people.h"
+#include "population.h"
+#include "montecarlo.h"
+
+//Num arguments Value arguments
+int main(int argn, char **argv){
+  People a1;
+  Population p;
+  MonteCarlo mc;
+  
+  /*age,
+    gender [0=man, 1=woman],
+    status [0=healthy, 1=sick, 2=immune, -1=dead],
+    time_recovery [hours]
+    position [x,y]
+    direction [x,y]
+  */
+
+  // Creamos las personas
+  a1 = new_people(18, 1, 0, 0.0, 0.0, 0.0, 1.0, 0.0 );
+  a2 = new_people(28, 0, 0, 0.0, 1.0, 3.0, 1.0, 1.0 );
+  a3 = new_people(38, 1, 0, 0.0, 2.0, 5.0, 2.0, 4.0 );
+  a4 = new_people(48, 0, 0, 0.0, 3.0, 6.0, 3.0, 1.0 );
+  a5 = new_people(60, 1, 0, 0.0, 4.0, 8.0, 2.0, 4.0 );
+
+  // Creamos la población
+  p = new_Population("Mexico");
+  // Añadimos la población y las personas
+  add_people_to_population(p,a1);
+  add_people_to_population(p,a2);
+  add_people_to_population(p,a3);
+  add_people_to_population(p,a4);
+  add_people_to_population(p,a5);
+
+  // name, population
+  mc = new_MonteCarlo("Test",p);
+  // MonteCarlo, steps, print
+  run_MonteCarlo(mc, 100, 10); 
+  
+  return 0;
+}

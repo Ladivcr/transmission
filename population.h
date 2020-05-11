@@ -6,14 +6,16 @@ extern "C" {
 #endif /* __cplusplus */
 
 #include "people.h"
-
+  
 typedef struct{
   char name[128];
-  People people[8]; // Número max de personas en la simulación
+  People *people;
+  int size; //size of population 8
+  int iterator;  // internal iterator to control the actual population
 }Population;
 
-Population  new_Population(char name[]);
-int add_people_to_population(Population p; People a);
+  Population new_Population(char name[], int size);
+  int add_people_to_population(Population *p, People a);
 
 #ifdef __cplusplus
 } /* extern "C" */
